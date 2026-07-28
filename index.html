@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Fikri Alfarisi | Portfolio</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* CSS Variables for Theme */
+        :root {
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --primary: #3b82f6;
+            --secondary: #8b5cf6;
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --glow: rgba(59, 130, 246, 0.5);
+        }
+
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Background Effects */
+        .bg-glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 50%;
+            filter: blur(150px);
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        .bg-glow.top { top: -100px; left: -100px; }
+        .bg-glow.bottom { bottom: 10%; right: -100px; }
+
+        /* Typography */
+        h1, h2, h3 { font-weight: 700; }
+        .gradient-text {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .code-font { font-family: 'Fira Code', monospace; }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-light);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover { color: var(--primary); }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 10%;
+            position: relative;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 4rem;
+            width: 100%;
+            max-width: 1200px;
+            z-index: 1;
+        }
+
+        .hero-text {
+            flex: 1;
+            max-width: 650px;
+        }
+
+        .hero-img-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-img {
+            width: 100%;
+            max-width: 380px;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            border: 3px solid var(--primary);
+            box-shadow: 0 0 40px var(--glow);
+            animation: morph 8s ease-in-out infinite;
+        }
+
+        @keyframes morph {
+            0% { border-radius: 40% 60% 60% 40% / 60% 30% 70% 40%; }
+            50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+            100% { border-radius: 40% 60% 60% 40% / 60% 30% 70% 40%; }
+        }
+
+        .hero-subtitle {
+            color: var(--primary);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .typewriter-container {
+            font-size: 2rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            height: 40px;
+        }
+
+        .hero-desc {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin-bottom: 2.5rem;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 4px 15px var(--glow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px var(--glow);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-light);
+            border: 2px solid var(--primary);
+            margin-left: 1rem;
+        }
+
+        .btn-outline:hover {
+            background: rgba(59, 130, 246, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* Sections General */
+        section { padding: 100px 10%; }
+        
+        .section-header {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        /* About Section */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        .about-text { flex: 1; font-size: 1.1rem; color: var(--text-muted); }
+        .about-text p { margin-bottom: 1.5rem; }
+        
+        .highlight {
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        .about-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-box {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.05);
+            flex: 1;
+        }
+
+        .stat-num {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-card {
+            background: var(--bg-card);
+            padding: 2rem 1rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .skill-card i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.4s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--secondary);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+        }
+
+        .project-img {
+            height: 200px;
+            background: #2a3b55;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: rgba(255,255,255,0.2);
+        }
+
+        .project-info { padding: 2rem; }
+        
+        .project-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-desc {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tech-tag {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--primary);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Contact Section */
+        .contact-box {
+            background: var(--bg-card);
+            padding: 4rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.05);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .contact-box h2 { font-size: 2.5rem; margin-bottom: 1.5rem; }
+        .contact-box p { color: var(--text-muted); margin-bottom: 2.5rem; }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            color: var(--text-muted);
+        }
+
+        /* Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-content { 
+                flex-direction: column-reverse; 
+                text-align: center; 
+                margin-top: 100px;
+                gap: 2rem;
+            }
+            .hero-text {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .hero-img {
+                max-width: 250px;
+            }
+            .hero-title { font-size: 2.5rem; }
+            .about-content { flex-direction: column; }
+            .nav-links { display: none; /* Can be expanded to mobile menu later */ }
+            section { padding: 60px 5%; }
+            .btn-outline { margin-left: 0; margin-top: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Decorative Background -->
+    <div class="bg-glow top"></div>
+    <div class="bg-glow bottom"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">FA.</a>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content reveal active">
+            <div class="hero-text">
+                <span class="hero-subtitle code-font">Hello World! Saya</span>
+                <h1 class="hero-title">Muhammad Fikri Alfarisi</h1>
+                <div class="typewriter-container">
+                    <span class="code-font">> </span><span id="typewriter" class="gradient-text"></span><span class="cursor">|</span>
+                </div>
+                <p class="hero-desc">Seorang Software Developer berusia 16 tahun. Memiliki hasrat besar dalam menciptakan pengalaman digital yang inovatif, bersih, dan berkinerja tinggi. Mengubah kopi dan imajinasi menjadi baris kode.</p>
+                <div>
+                    <a href="#projects" class="btn btn-primary">Lihat Portofolio</a>
+                    <a href="#contact" class="btn btn-outline">Hubungi Saya</a>
+                </div>
+            </div>
+            
+            <div class="hero-img-container">
+                <!-- GANTI LINK DI BAWAH INI DENGAN LINK FOTO KAMU ATAU LOKASI FILE FOTO KAMU (Contoh: src="images/fotoku.jpg") -->
+                <img src="/photo_2026-07-23_12-46-19.jpg" alt="Muhammad Fikri Alfarisi" class="hero-img">
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-header gradient-text">Tentang Saya</h2>
+        <div class="about-content reveal">
+            <div class="about-text">
+                <p>Halo! Nama saya <span class="highlight">Muhammad Fikri Alfarisi</span>. Meskipun saya baru berusia <span class="highlight">16 tahun</span>, kecintaan saya pada dunia pemrograman sudah dimulai sejak lama. Bagi saya, *coding* bukan sekadar mengetik sintaks, melainkan seni memecahkan masalah.</p>
+                <p>Saya berspesialisasi dalam membangun aplikasi web responsif (Full-Stack). Saya selalu lapar akan teknologi baru dan bersemangat menerapkan *best practices* dalam penulisan *clean code*.</p>
+                
+                <div class="about-stats">
+                    <div class="stat-box">
+                        <div class="stat-num">3+</div>
+                        <div>Tahun Pengalaman Coding</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-num">15+</div>
+                        <div>Proyek Diselesaikan</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2 class="section-header gradient-text">Teknologi & Keahlian</h2>
+        <div class="skills-grid reveal">
+            <div class="skill-card"><i class="fa-brands fa-html5"></i><h3>HTML/CSS</h3></div>
+            <div class="skill-card"><i class="fa-brands fa-js"></i><h3>JavaScript</h3></div>
+            <div class="skill-card"><i class="fa-brands fa-react"></i><h3>React.js</h3></div>
+            <div class="skill-card"><i class="fa-brands fa-node"></i><h3>Node.js</h3></div>
+            <div class="skill-card"><i class="fa-brands fa-python"></i><h3>Python</h3></div>
+            <div class="skill-card"><i class="fa-solid fa-database"></i><h3>SQL / NoSQL</h3></div>
+            <div class="skill-card"><i class="fa-brands fa-github"></i><h3>Git & GitHub</h3></div>
+            <div class="skill-card"><i class="fa-solid fa-code"></i><h3>Tailwind CSS</h3></div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2 class="section-header gradient-text">Proyek Unggulan</h2>
+        <div class="projects-grid reveal">
+            
+            <!-- Project 1 -->
+            <div class="project-card">
+                <div class="project-img">
+                    <i class="fa-solid fa-laptop-code"></i>
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">EduTech Platform</h3>
+                    <p class="project-desc">Platform e-learning interaktif dengan fitur kuis real-time, manajemen kursus, dan dashboard analitik interaktif untuk siswa dan pengajar.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">MongoDB</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-card">
+                <div class="project-img">
+                    <i class="fa-solid fa-robot"></i>
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">AI Chat Assistant</h3>
+                    <p class="project-desc">Aplikasi web berbasis kecerdasan buatan yang mengintegrasikan API pihak ketiga untuk memberikan respon otomatis dan cerdas terhadap pertanyaan pengguna.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">OpenAI API</span>
+                        <span class="tech-tag">Express</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="project-card">
+                <div class="project-img">
+                    <i class="fa-solid fa-wallet"></i>
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">Crypto Tracker App</h3>
+                    <p class="project-desc">Aplikasi pelacakan mata uang kripto secara real-time dengan grafik visual interaktif dan peringatan harga khusus.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Tailwind</span>
+                        <span class="tech-tag">REST API</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="contact-box reveal">
+            <h2 class="gradient-text">Mari Bekerja Sama!</h2>
+            <p>Saya selalu terbuka untuk mendiskusikan pengembangan produk, kolaborasi kode, atau sekadar bertukar pikiran tentang teknologi terbaru. Jangan ragu untuk menyapa!</p>
+            <a href="mailto:fikri.alfarisi@example.com" class="btn btn-primary">Say Hello</a>
+            
+            <div class="social-links">
+                <a href="#"><i class="fa-brands fa-github"></i></a>
+                <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Muhammad Fikri Alfarisi. Crafted with passion & logic.</p>
+    </footer>
+
+    <!-- JavaScript for Interactivity -->
+    <script>
+        // Typewriter Effect
+        const words = ["Full-Stack Developer", "Tech Enthusiast", "Problem Solver", "UI/UX Coder"];
+        let i = 0;
+        let timer;
+
+        function typingEffect() {
+            let word = words[i].split("");
+            var loopTyping = function() {
+                if (word.length > 0) {
+                    document.getElementById('typewriter').innerHTML += word.shift();
+                } else {
+                    setTimeout(deletingEffect, 2000);
+                    return false;
+                };
+                timer = setTimeout(loopTyping, 100);
+            };
+            loopTyping();
+        }
+
+        function deletingEffect() {
+            let word = words[i].split("");
+            var loopDeleting = function() {
+                if (word.length > 0) {
+                    word.pop();
+                    document.getElementById('typewriter').innerHTML = word.join("");
+                } else {
+                    if (words.length > (i + 1)) {
+                        i++;
+                    } else {
+                        i = 0;
+                    };
+                    typingEffect();
+                    return false;
+                };
+                timer = setTimeout(loopDeleting, 50);
+            };
+            loopDeleting();
+        }
+        
+        // Start typing effect on load
+        window.onload = function() {
+            typingEffect();
+        };
+
+        // Scroll Reveal Animation (Intersection Observer)
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        
+        window.addEventListener("scroll", reveal);
+        // Trigger once to check elements already in view
+        reveal();
+    </script>
+</body>
+</html>
